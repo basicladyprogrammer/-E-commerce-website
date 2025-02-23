@@ -1,47 +1,51 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/Header.css";
 import logo from "../assets/logo.png";
-import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
+import { FaShoppingCart, FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
 
 const Header = () => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const handleNavToggle = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
   return (
     <header className="header">
       <div className="logo-container">
         <img src={logo} alt="Shoe Palace Logo" className="logo" />
       </div>
-      <nav>
-        <ul className="nav-links">
+      <button className="navbar-toggler" onClick={handleNavToggle}>
+        {isNavOpen ? <FaTimes /> : <FaBars />}
+      </button>
+
+      <nav className={isNavOpen ? "nav-links nav-open" : "nav-links"}>
+        <ul>
           <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) => (isActive ? "active" : "")}>
+            <NavLink to="/" onClick={handleNavToggle}>
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/about"
-              className={({ isActive }) => (isActive ? "active" : "")}>
+            <NavLink to="/about" onClick={handleNavToggle}>
               About
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/product"
-              className={({ isActive }) => (isActive ? "active" : "")}>
+            <NavLink to="/product" onClick={handleNavToggle}>
               Product
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/contact"
-              className={({ isActive }) => (isActive ? "active" : "")}>
+            <NavLink to="/contact" onClick={handleNavToggle}>
               Contact
             </NavLink>
           </li>
         </ul>
       </nav>
-      <div className="icons">
+
+      <div className={isNavOpen ? "icons icons-open" : "icons"}>
         <FaShoppingCart className="icon1" />
         <FaUserCircle className="icon2" />
       </div>

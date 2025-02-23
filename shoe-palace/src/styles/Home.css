@@ -28,8 +28,7 @@
   max-width: 50%;
 }
 
-.hero-content h1,
-.offer-container h1 {
+.hero-content h1 {
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: 15px;
@@ -110,11 +109,20 @@ h2 {
   background: rgba(33, 218, 219, 0.4);
   padding: 20px;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .brand-logos {
   display: flex;
   gap: 40px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  max-width: 80%;
+  padding-bottom: 10px;
+}
+
+.brand-logos::-webkit-scrollbar {
+  display: none;
 }
 
 .brand-logos img {
@@ -123,6 +131,7 @@ h2 {
   background: white;
   padding: 10px;
   border-radius: 8px;
+  flex: 0 0 auto;
 }
 
 .brand-nav {
@@ -131,6 +140,32 @@ h2 {
   font-size: 25px;
   color: white;
   cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.brand-nav:hover {
+  transform: scale(1.2);
+}
+
+/* Responsive Styles for brand section*/
+@media screen and (max-width: 768px) {
+  .brand-section {
+    margin: 0px 20px;
+  }
+
+  .brand-logos {
+    gap: 20px;
+    max-width: 100%;
+  }
+
+  .brand-logos img {
+    width: 100px;
+    height: 80px;
+  }
+
+  .brand-nav {
+    font-size: 20px;
+  }
 }
 
 /* Trending Products Section */
@@ -225,6 +260,13 @@ h2 {
   border-radius: 10px;
 }
 
+.offer-container h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
 .offer-buttons {
   display: flex;
   justify-content: center;
@@ -261,4 +303,10 @@ h2 {
   margin-left: -10px;
   cursor: pointer;
   text-transform: uppercase;
+}
+
+@media screen and (max-width: 768px) {
+  .offer-container h1 {
+    font-size: 2rem;
+  }
 }

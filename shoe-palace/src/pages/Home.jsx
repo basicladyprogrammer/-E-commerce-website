@@ -14,8 +14,19 @@ import {
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
 import Footer from "../components/Footer";
+import { useRef } from "react";
 
 const Home = () => {
+  const sliderRef = useRef(null);
+
+  const scrollLeft = () => {
+    sliderRef.current.scrollBy({ left: -200, behavior: "smooth" });
+  };
+
+  const scrollRight = () => {
+    sliderRef.current.scrollBy({ left: 200, behavior: "smooth" });
+  };
+
   const trendingProducts = [
     {
       id: 1,
@@ -107,17 +118,16 @@ const Home = () => {
       <section className="brand-section">
         <h2>Brand</h2>
         <div className="brand-slider">
-          <button className="brand-nav left">
-            {" "}
+          <button className="brand-nav left" onClick={scrollLeft}>
             <MdOutlineKeyboardArrowLeft />
           </button>
-          <div className="brand-logos">
+          <div className="brand-logos" ref={sliderRef}>
             <img src={adidasLogo} alt="Adidas" />
             <img src={nikeLogo} alt="Nike" />
             <img src={pumaLogo} alt="Puma" />
             <img src={newBalanceLogo} alt="New Balance" />
           </div>
-          <button className="brand-nav right">
+          <button className="brand-nav right" onClick={scrollRight}>
             <MdOutlineKeyboardArrowRight />
           </button>
         </div>
